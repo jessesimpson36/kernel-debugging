@@ -57,3 +57,7 @@ Some time later, I'll look into attaching another device to my computer so that 
 For now, I'll work with the above stacktrace.
 
 The first problem we have is that this stacktrace uses memory references rather than line numbers.
+
+For this, the kernel needs to be compiled with debugging symbols enabled.
+
+
