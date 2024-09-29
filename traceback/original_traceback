@@ -1,0 +1,59 @@
+49.688936] _ sysvec_call_function_single+0x1c/0xc0 49.688940 sysvec_call_function_single+0x38/0x90 49.688943] asm_sysvec_call_function_single+0x1a/0x20
+49.688945] RIP: 0033:0x55a024b6fbf8
+49.688949] RSP: 002b:000000c0001a95c0 EFLAGS: 00000202 49.688951] RAX: 00000000000000b7 RBX: 00756ea15c775951 RCX: 000000c0001176a0
+49.688947] Code: 76 f8 48 8b de 48 85 c9 74 0a 48 89 40 24 20 31 d2 90 eb 16 48 8d 05 17 c4 86 00 31 db 48 8b 6c 24 30 48 83 c4 38 c3 48 ff c2 <48> 83 fa 08 73 c6 6f b6 34 6a 40 38 10 74 67 46 84 f6 75 e9 eb d4
+49.688952] RDX: 0000000000000007 RSI: 00000000000000ad RDI: 000055a025061dce 49.688953] RBP: 000000c0001a95f0 R08: 00000000000000d0 R09: 0000000000000000
+49.688954] R10: 0000000060000e9c R11: 0000000aaaaaaaaa R12: fff٢٢٢٢٢٢٢٢٢٢٢٢٢ 49.688955] R13: 0000000000000026 R14: 000000c0000061a0 R15: 0000001000000000
+49.688959] </TASK> 49.688960]---[end trace 0000000000000000]---
+49.689092][cut here ].... 49.689094] delay && se->sched_delayed
+10961
+3% 38°C 11:15
+
+
+
+
+49.689096] WARNING: CPU: 12 PID: 91 at kernel/sched/fair.c:5493 dequeue_entity+0x3e3/0x560
+49.689101] Modules linked in: xt_statistic ip6table_filter ip6table_nat ip6table_mangle ip6_tables xt_mark xt_comment iptable_mangle rfcomm ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi tep libiscsi scsi_transport_iscsi configfs autofs4 fuse nf_tables veth xt_nat xt_conntrack xt_MASQUERADE nf_conntrack_netlink nfnetlink iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 xt_addrtype iptable_filter ip_tables br_netfilter bridge overlay rpcsec_gss_krb5 auth_rpcgss nfsv4 dns_ resolver 8021q garp
+mrp stp lle cmac bnep vfat fat ext4 mbcache jbd2 vboxnetadp(OE) amd_atl intel_rapl_msr vboxnetflt(OE) intel_rapl_common vboxdrv (0E) v412loopback (OE) amdgpu nfs lockd grace amdxcp mfd_core drm_exec sunrpc gpu_sched drm_buddy edac_m ce_amd snd_hda_codec_realtek i2c_algo_bit drm_suballoc_helper iwlmvm snd_hda_codec_generic drm_ttm_helper netfs kvm_amd ttm snd_hda_scodec_component snd_hda_codec_hdmi ee1004 wmi_bmof uvcvideo nbd drm_display_helper uvc mac80211 snd_hda_intel videobu
+49.689160] videobuf2_memops drm_kms_helper kvm snd_intel_sdw_acpi videobuf2_v412 libarc4 snd_usb_audio snd_hda_codec lm92 videobuf2_common btusb crcti@dif_pclmul snd_usbmidi_lib iwlwifi ghash_clmulni_intel btrtl drm snd_hda_core snd_rawmidi vide odev sha512_ssse3 btintel snd_hwdep snd_seq_device snd_pcm btbcm sp5100_tco rapl hid_logitech_hidpp pcspkr efi_pstore video snd_timer i2c_piix4 mc 12c_smbus backlight snd bluetooth cfg80211 k16temp ccp soundcore 12c_core joydev rfkill cdc_acm gpio_am dpt
+gpio_generic mac_hid wmi efivarfs dm_crypt trusted asn1_encoder dm_mod ipv6 crc_ccitt hid_logitech_dj sd_mod r8169 realtek xhci_pci mdio_devres nvme crc32_pclmul ahci libphy xhci_hcd nvme_core Libahci btrfs blake2b_generic xor raide pq Liberc32c WOE 6.11.0-next-20240927-x86_64 #1
+f2_vmalloc snd_intel_dspcfg
+crc32c_intel
+49.689216] CPU: 12 UID: 0 PID: 91 Comm: migration/12 Kdump: loaded Tainted: 6 49.689220]
+Tainted: [W] WARN, [0]=OOT_MODULE, [E]=UNSIGNED MODULE 49.689221] Hardware name: Micro-Star International Co., Ltd. MS-7C91/MAG B550 TOMAHAWK MAX WIFI (MS-7C91), BIOS 2.60 10/10/2023
+49.689222] Stopper: 0x0 <- 0x0
+49.689224] RIP: 0010:dequeue_entity+0x3e3/0x560
+49.689227] Code: 00 of 84 ac fd ff ff 30 3d 27 88 96 01 00 of 85 9f fd ff ff 48 c7 c7 64 5d 4a 82 88 64 24 c6 05 10 88 96 01 01 e8 9d 6d fa ff <ef> ob of b6 04 24 e9 7e fd ff ff 80 3d fa 87 96 01 00 of 85 47 fc
+49.689229] RSP: 0018:ffffc90000467bf8 EFLAGS: 00010086 49.689231] RAX: 0000000000000000 RBX: ffff888135896c00 RCX: 0000000000000027
+49.689232] RDX: ffff8887fee21908 RSI: 0000000000000001 RDI: ffff8887fee21900
+49.689233] RBP: ffff8881ada4e000 R08: 0000000000000000 R09: 0000000000000003
+49.689235] R10: ffffc90000467a98 R11: ffffffff82940308 R12: 0000000000000009 49.689236] R13: 0000000000000001 R14: 0000000000000000 R15: ffff888135896c00 49.689237] FS: 0000000000000000(0000) GS:ffff8887fee00000(0000) knl6s:0000000000000000
+49.689239] CS: 0010 DS: 0000 ES: 0000 CRO: 0000000080050033 49.689246] CR2: 00007ff6d1683000 CR3: 0000000281712000 CR4: 0000000000750efe
+49.689242] PKRU: 55555554
+49.689243] Call Trace:
+49.689244] <TASK>
+49.689246  ? _warn+0x89/0x130
+49.689248] ? dequeue_entity+0x3e3/0x560
+49.689251
+49.6892541 ? report_bug+0x164/6x190
+           ? handle_bug+0x58/0x90
+49.689257  ? exc_invalid_op+0x17/0x70 49.689259 ? asm_exc_invalid_op+0x1a/0x20
+49.689263] ? dequeue_entity+0x3e3/0x560 49.689266 ? dequeue_entity+0x3e3/0x560
+49.689269] dequeue_entities+0x105/6x540 49.689272] dequeue_task_fair+0x49/0x280
+49.689275] sched_balance_rq+0x6c6/0xf10 49.689281] sched_balance_newidle+0x1c9/0x410
+49.689284] ? _pfx_smpboot_thread_fn+0x10/0x10 49.689287] balance_fair+0x25/0x40
+I
+49.689289] _ schedule+0x534/0xbd0
+49.689293] ? _pfx_smpboot_thread_fn+0x10/0x10 schedule+0x27/0xf0
+49.689295]
+49.6892971
+           smpboot_thread_fn+0x14c/0x1d0 kthread+0xd2/6x100
+49.689306] ? _pfx_kthread+0x10/0x10
+49.689306]
+ret_from_fork+0x34/0x50
+</TASK>
+49.689310 ? _pfx_kthread+0x10/0x10 
+49.689312 ret_from_fork_asm+0x1a/0x30
+49.689318]
+49.689319]--[end trace 0000000000000000]---
+

@@ -1,0 +1,198 @@
+0xffffffff81132a93 is in dequeue_entity (kernel/sched/fair.c:5493).
+5488			 * states must not suffer spurious wakeups, excempt them.
+5489			 */
+5490			if (flags & DEQUEUE_SPECIAL)
+5491				delay = false;
+5492	
+5493			SCHED_WARN_ON(delay && se->sched_delayed);
+5494	
+5495			if (sched_feat(DELAY_DEQUEUE) && delay &&
+5496			    !entity_eligible(cfs_rq, se)) {
+5497				if (cfs_rq->next == se)
+0xffffffff81c55be4 is in report_bug (lib/bug.c:201).
+196	
+197		if (warning) {
+198			/* this is a WARN_ON rather than BUG/BUG_ON */
+199			__warn(file, line, (void *)bugaddr, BUG_GET_TAINT(bug), regs,
+200			       NULL);
+201			return BUG_TRAP_TYPE_WARN;
+202		}
+203	
+204		if (file)
+205			pr_crit("kernel BUG at %s:%u!\n", file, line);
+0xffffffff81c820e8 is in handle_bug (arch/x86/kernel/traps.c:260).
+255			      ILL_ILLOPN, error_get_trap_addr(regs));
+256	}
+257	
+258	static noinstr bool handle_bug(struct pt_regs *regs)
+259	{
+260		bool handled = false;
+261		int ud_type;
+262		u32 imm;
+263	
+264		/*
+0xffffffff81c82567 is in exc_invalid_op (arch/x86/kernel/traps.c:309).
+304		/*
+305		 * We use UD2 as a short encoding for 'CALL __WARN', as such
+306		 * handle it before exception entry to avoid recursive WARN
+307		 * in case exception entry is the one triggering WARNs.
+308		 */
+309		if (!user_mode(regs) && handle_bug(regs))
+310			return;
+311	
+312		state = irqentry_enter(regs);
+313		instrumentation_begin();
+0xffffffff81e0123a is at ./arch/x86/include/asm/idtentry.h:621.
+616	DECLARE_IDTENTRY_ERRORCODE(X86_TRAP_SS,	exc_stack_segment);
+617	DECLARE_IDTENTRY_ERRORCODE(X86_TRAP_GP,	exc_general_protection);
+618	DECLARE_IDTENTRY_ERRORCODE(X86_TRAP_AC,	exc_alignment_check);
+619	
+620	/* Raw exception entries which need extra work */
+621	DECLARE_IDTENTRY_RAW(X86_TRAP_UD,		exc_invalid_op);
+622	DECLARE_IDTENTRY_RAW(X86_TRAP_BP,		exc_int3);
+623	DECLARE_IDTENTRY_RAW_ERRORCODE(X86_TRAP_PF,	exc_page_fault);
+624	
+625	#if defined(CONFIG_IA32_EMULATION)
+0xffffffff81132a93 is in dequeue_entity (kernel/sched/fair.c:5493).
+5488			 * states must not suffer spurious wakeups, excempt them.
+5489			 */
+5490			if (flags & DEQUEUE_SPECIAL)
+5491				delay = false;
+5492	
+5493			SCHED_WARN_ON(delay && se->sched_delayed);
+5494	
+5495			if (sched_feat(DELAY_DEQUEUE) && delay &&
+5496			    !entity_eligible(cfs_rq, se)) {
+5497				if (cfs_rq->next == se)
+0xffffffff81132a93 is in dequeue_entity (kernel/sched/fair.c:5493).
+5488			 * states must not suffer spurious wakeups, excempt them.
+5489			 */
+5490			if (flags & DEQUEUE_SPECIAL)
+5491				delay = false;
+5492	
+5493			SCHED_WARN_ON(delay && se->sched_delayed);
+5494	
+5495			if (sched_feat(DELAY_DEQUEUE) && delay &&
+5496			    !entity_eligible(cfs_rq, se)) {
+5497				if (cfs_rq->next == se)
+0xffffffff81133235 is in dequeue_entities (kernel/sched/fair.c:7104).
+7099		}
+7100	
+7101		for_each_sched_entity(se) {
+7102			cfs_rq = cfs_rq_of(se);
+7103	
+7104			if (!dequeue_entity(cfs_rq, se, flags)) {
+7105				if (p && &p->se == se)
+7106					return -1;
+7107	
+7108				break;
+0xffffffff81133799 is in dequeue_task_fair (kernel/sched/fair.c:7193).
+7188	static bool dequeue_task_fair(struct rq *rq, struct task_struct *p, int flags)
+7189	{
+7190		if (!(p->se.sched_delayed && (task_on_rq_migrating(p) || (flags & DEQUEUE_SAVE))))
+7191			util_est_dequeue(&rq->cfs, p);
+7192	
+7193		if (dequeue_entities(rq, &p->se, flags) < 0) {
+7194			util_est_update(&rq->cfs, p, DEQUEUE_SLEEP);
+7195			return false;
+7196		}
+7197	
+0xffffffff8113a586 is in sched_balance_rq (kernel/sched/fair.c:9451).
+9446	static void detach_task(struct task_struct *p, struct lb_env *env)
+9447	{
+9448		lockdep_assert_rq_held(env->src_rq);
+9449	
+9450		deactivate_task(env->src_rq, p, DEQUEUE_NOCLOCK);
+9451		set_task_cpu(p, env->dst_cpu);
+9452	}
+9453	
+9454	/*
+9455	 * detach_one_task() -- tries to dequeue exactly one task from env->src_rq, as
+0xffffffff8113afa9 is in sched_balance_newidle (kernel/sched/fair.c:12789).
+12784	
+12785				pulled_task = sched_balance_rq(this_cpu, this_rq,
+12786							   sd, CPU_NEWLY_IDLE,
+12787							   &continue_balancing);
+12788	
+12789				t1 = sched_clock_cpu(this_cpu);
+12790				domain_cost = t1 - t0;
+12791				update_newidle_cost(sd, domain_cost);
+12792	
+12793				curr_cost += domain_cost;
+0xffffffff8113b225 is in balance_fair (kernel/sched/fair.c:8734).
+8729	balance_fair(struct rq *rq, struct task_struct *prev, struct rq_flags *rf)
+8730	{
+8731		if (sched_fair_runnable(rq))
+8732			return 1;
+8733	
+8734		return sched_balance_newidle(rq, rf) != 0;
+8735	}
+8736	#else
+8737	static inline void set_task_max_allowed_capacity(struct task_struct *p) {}
+8738	#endif /* CONFIG_SMP */
+0xffffffff81c8d584 is in yield_to (./arch/x86/include/asm/irqflags.h:142).
+137	#endif /* CONFIG_PARAVIRT_XXL */
+138	
+139	#ifndef __ASSEMBLY__
+140	static __always_inline int arch_irqs_disabled_flags(unsigned long flags)
+141	{
+142		return !(flags & X86_EFLAGS_IF);
+143	}
+144	
+145	static __always_inline int arch_irqs_disabled(void)
+146	{
+0xffffffff81c8d077 is in schedule (./arch/x86/include/asm/preempt.h:84).
+79		raw_cpu_add_4(pcpu_hot.preempt_count, val);
+80	}
+81	
+82	static __always_inline void __preempt_count_sub(int val)
+83	{
+84		raw_cpu_add_4(pcpu_hot.preempt_count, -val);
+85	}
+86	
+87	/*
+88	 * Because we keep PREEMPT_NEED_RESCHED set when we do _not_ need to reschedule
+0xffffffff81117a1c is in smpboot_thread_fn (kernel/smpboot.c:160).
+155				continue;
+156			}
+157	
+158			if (!ht->thread_should_run(td->cpu)) {
+159				preempt_enable_no_resched();
+160				schedule();
+161			} else {
+162				__set_current_state(TASK_RUNNING);
+163				preempt_enable();
+164				ht->thread_fn(td->cpu);
+0xffffffff8110ab12 is in kthread (kernel/kthread.c:389).
+384	
+385		ret = -EINTR;
+386		if (!test_bit(KTHREAD_SHOULD_STOP, &self->flags)) {
+387			cgroup_kthread_ready();
+388			__kthread_parkme(self);
+389			ret = threadfn(data);
+390		}
+391		kthread_exit(ret);
+392	}
+393	
+0xffffffff81048354 is in ret_from_fork (arch/x86/kernel/process.c:153).
+148			/*
+149			 * A kernel thread is allowed to return here after successfully
+150			 * calling kernel_execve().  Exit to userspace to complete the
+151			 * execve() syscall.
+152			 */
+153			regs->ax = 0;
+154		}
+155	
+156		syscall_exit_to_user_mode(regs);
+157	}
+0xffffffff8100718a is at arch/x86/entry/entry_64.S:257.
+252	
+253	#ifdef CONFIG_X86_FRED
+254		ALTERNATIVE "jmp swapgs_restore_regs_and_return_to_usermode", \
+255			    "jmp asm_fred_exit_user", X86_FEATURE_FRED
+256	#else
+257		jmp	swapgs_restore_regs_and_return_to_usermode
+258	#endif
+259	SYM_CODE_END(ret_from_fork_asm)
+260	.popsection
+261	
